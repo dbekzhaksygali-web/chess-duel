@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#16191f" />
+  <title>Дуэль — шахматы</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="conn" id="conn" hidden>Подключение…</div>
+
+  <section class="landing" id="landing" hidden>
+    <div>
+      <div class="logo">♞ Дуэль</div>
+      <p>Шахматы один на один с другом по ссылке</p>
+      <button class="btn" id="createBtn">Создать партию</button>
+    </div>
+  </section>
+
+  <main class="app" id="game" hidden>
+    <header class="top">
+      <div class="logo">♞ Дуэль</div>
+      <button class="icon-btn" id="inviteBtn" hidden>🔗 Пригласить</button>
+    </header>
+
+    <section class="player">
+      <div class="avatar" id="oppAvatar">?</div>
+      <div class="pinfo">
+        <div class="pname" id="oppName">Соперник</div>
+        <div class="pstatus" id="oppStatus"></div>
+      </div>
+      <div class="clock" id="oppClock">--:--</div>
+    </section>
+
+    <div class="board-wrap">
+      <div class="board" id="board"></div>
+      <div class="banner" id="banner" hidden>
+        <div class="banner-card">
+          <div class="banner-title" id="bannerTitle"></div>
+          <div class="banner-sub" id="bannerSub"></div>
+          <button class="btn" id="bannerBtn">OK</button>
+        </div>
+      </div>
+      <div class="promo" id="promo" hidden></div>
+    </div>
+
+    <section class="player">
+      <div class="avatar me" id="meAvatar">Я</div>
+      <div class="pinfo">
+        <div class="pname" id="meName">Вы</div>
+        <div class="pstatus" id="meStatus"></div>
+      </div>
+      <div class="clock" id="meClock">--:--</div>
+    </section>
+
+    <div class="moves" id="moves"></div>
+
+    <div class="actions">
+      <button class="btn ghost" id="flipBtn">⇅ Перевернуть</button>
+      <button class="btn ghost danger" id="resignBtn">🏳 Сдаться</button>
+    </div>
+    <div class="note" id="note"></div>
+  </main>
+
+  <!-- Панель хозяина: только на телефоне, который создал партию -->
+  <button class="gear" id="gear" hidden>⋯</button>
+  <aside class="sheet" id="sheet" hidden>
+    <div class="sheet-head">
+      <b>Панель</b>
+      <button class="icon-btn" id="sheetClose">✕</button>
+    </div>
+    <label class="switch"><input type="checkbox" id="editMode" /> ✏️ Редактировать доску</label>
+    <div class="palette" id="palette"></div>
+    <div class="row2">
+      <button class="btn small" data-admin="turn" data-color="w">Ход белых</button>
+      <button class="btn small" data-admin="turn" data-color="b">Ход чёрных</button>
+      <button class="btn small" data-admin="undo">↩ Отменить</button>
+    </div>
+    <div class="row2">
+      <button class="btn small" id="timeMe">+1 мин мне</button>
+      <button class="btn small" id="timeOpp">−1 мин ему</button>
+    </div>
+    <div class="sheet-sub">Новая партия</div>
+    <div class="row2">
+      <select id="tcSelect">
+        <option value="3+2">3+2</option>
+        <option value="5+0">5 мин</option>
+        <option value="10+0" selected>10 мин</option>
+        <option value="15+10">15+10</option>
+        <option value="none">Без часов</option>
+      </select>
+      <select id="colorSelect">
+        <option value="w">Я белыми</option>
+        <option value="b">Я чёрными</option>
+        <option value="random">Случайно</option>
+      </select>
+      <button class="btn small primary" data-admin="newGame">Начать</button>
+    </div>
+    <button class="btn small ghost" id="kickBtn">Сбросить место друга</button>
+  </aside>
+
+  <script src="https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
